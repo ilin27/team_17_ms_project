@@ -65,4 +65,6 @@ ms_ps_final <- prune_taxa(taxa_sums(ms_ps_final) > 0, ms_ps_final)
 # check sample counts by allergy status
 table(sample_data(ms_ps_final)$treatment_status, sample_data(ms_ps_final)$allergy_status)
 
+# view and save final phyloseq object
 ms_ps_final
+saveRDS(ms_ps_final, "MS_phyloseq_final.rds")
