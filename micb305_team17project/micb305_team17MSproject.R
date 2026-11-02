@@ -55,3 +55,14 @@ ms_ps_filt <- ms_ps %>%
   prune_samples(sample_sums(.) > 100, .)
 
 sample_sums(ms_ps_filt)
+
+# filter out treated MS patients
+ms_ps_final <- subset_samples(ms_ps_filt, treatment_status %in% c("Control", "Untreated"))
+
+# remove taxa with zero abundance
+ms_ps_final <- prune_taxa(taxa_sums(ms_ps_final) > 0, ms_ps_final)
+
+# check sample counts by allergy status
+table(sample_data(ms_ps_final)$treatment_status, sample_data(ms_ps_final)$allergy_status)
+
+ms_ps_final
